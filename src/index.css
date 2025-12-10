@@ -1,19 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
 :root {
-  --color-hanukkah-blue: #004080;
-  --color-hanukkah-light: #4da6ff;
-  --color-silver: #c0c0c0;
+  --color-deep-blue: #001f3f;
+  --color-midnight: #0b0f19;
+
+  /* Vibrant Palette */
   --color-gold: #ffd700;
+  --color-gold-glow: #ffed4a;
+  --color-electric-blue: #00f7ff;
+  --color-neon-purple: #b026ff;
+  --color-silver: #e0e0e0;
   --color-white: #ffffff;
-  --bg-gradient: linear-gradient(135deg, #001f3f 0%, #004080 100%);
-  
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+
+  --glass-bg: rgba(20, 30, 60, 0.4);
+  /* Slightly blueish tint */
+  --glass-border: rgba(0, 247, 255, 0.3);
+  /* Electric blue border hint */
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Inter', sans-serif;
+
+  font-family: var(--font-body);
+  line-height: 1.6;
   font-weight: 400;
-  
+
   color-scheme: dark;
   color: var(--color-white);
-  background-color: #001f3f;
-  
+  background-color: var(--color-midnight);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,80 +41,178 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--bg-gradient);
+  /* Deep starry night gradient preserved but slightly richer */
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow-x: hidden;
 }
 
 #root {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Stars background effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 3px),
+    radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 2px),
+    radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 3px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  /* Neon glow text shadow */
+  text-shadow:
+    0 0 5px var(--color-electric-blue),
+    0 0 10px var(--color-electric-blue),
+    0 0 20px var(--color-electric-blue);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: var(--color-silver);
-  text-shadow: 0 0 10px var(--color-hanukkah-light);
+  font-size: 3.5rem;
+  background: linear-gradient(to right, #fff, var(--color-electric-blue), #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  text-shadow: none;
+  /* Gradient text doesn't work well with text-shadow */
+  filter: drop-shadow(0 0 10px var(--color-electric-blue));
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--color-hanukkah-blue);
-  color: var(--color-gold);
-  border: 1px solid var(--color-gold);
+  border-radius: 50px;
+  border: none;
+  padding: 0.8em 2em;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  /* Vibrant gradient */
+  background: linear-gradient(135deg, var(--color-deep-blue), var(--color-neon-purple));
+  color: var(--color-white);
   cursor: pointer;
-  transition: all 0.25s;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
 }
 
-button:hover {
-  background-color: var(--color-gold);
-  color: var(--color-hanukkah-blue);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-electric-blue), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 0 20px var(--color-electric-blue),
+    0 0 40px var(--color-neon-purple);
+}
+
+button:hover:not(:disabled)::before {
+  opacity: 0.3;
+}
+
+button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 input {
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  border-radius: 8px;
-  border: 1px solid var(--color-silver);
-  background: rgba(255, 255, 255, 0.1);
+  padding: 0.8em 1.5em;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: 1px solid var(--glass-border);
+  background: rgba(0, 0, 0, 0.3);
   color: white;
   margin-right: 0.5rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s;
+  font-family: var(--font-body);
 }
 
 input:focus {
-  outline: 2px solid var(--color-gold);
+  outline: none;
+  border-color: var(--color-electric-blue);
+  box-shadow: 0 0 15px var(--color-electric-blue);
+  background: rgba(0, 31, 63, 0.6);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  border-radius: 24px;
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  padding: 3rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  position: relative;
 }
 
-li {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  color: var(--color-hanukkah-light);
+/* Adding a glow behind the panel */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--color-deep-blue), var(--color-neon-purple), var(--color-electric-blue));
+  z-index: -1;
+  border-radius: 26px;
+  opacity: 0.3;
+  filter: blur(10px);
 }
 
-.card {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid var(--color-silver);
-  box-shadow: 0 0 30px rgba(0, 64, 128, 0.5);
-  margin-top: 2rem;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-midnight);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-deep-blue);
+  border-radius: 4px;
+  border: 1px solid var(--color-glass-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-electric-blue);
 }
