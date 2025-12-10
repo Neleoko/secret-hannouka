@@ -1,0 +1,105 @@
+:root {
+  --color-hanukkah-blue: #004080;
+  --color-hanukkah-light: #4da6ff;
+  --color-silver: #c0c0c0;
+  --color-gold: #ffd700;
+  --color-white: #ffffff;
+  --bg-gradient: linear-gradient(135deg, #001f3f 0%, #004080 100%);
+  
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  color-scheme: dark;
+  color: var(--color-white);
+  background-color: #001f3f;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--color-silver);
+  text-shadow: 0 0 10px var(--color-hanukkah-light);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-hanukkah-blue);
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+button:hover {
+  background-color: var(--color-gold);
+  color: var(--color-hanukkah-blue);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid var(--color-silver);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-right: 0.5rem;
+}
+
+input:focus {
+  outline: 2px solid var(--color-gold);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--color-hanukkah-light);
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-silver);
+  box-shadow: 0 0 30px rgba(0, 64, 128, 0.5);
+  margin-top: 2rem;
+}
